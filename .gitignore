@@ -1,5 +1,6 @@
 # 依赖与模型（体积大，用 scripts/setup.ps1 获取）
-/assets/
+/assets/*
+!/assets/splash_default.png
 /libs/
 /model/
 /tmp/

@@ -14,36 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.io.File;
-import java.util.Random;
+import java.io.InputStream;
 
 public class SplashActivity extends Activity {
-    private static final String[] QUOTES = {
-            "千里之行，始于足下。",
-            "不积跬步，无以至千里。",
-            "天道酬勤。",
-            "厚积薄发。",
-            "行胜于言。",
-            "与其临渊羡鱼，不如退而结网。",
-            "工欲善其事，必先利其器。",
-            "路虽远，行则将至；事虽难，做则必成。",
-            "不怕慢，就怕站。",
-            "坚持，是最朴素的天赋。",
-            "所有的努力，都不会白费。",
-            "越努力，越幸运。",
-            "今天多学一点，明天少求人一点。",
-            "你只管努力，剩下的交给时间。",
-            "星光不问赶路人，时光不负有心人。",
-            "你现在的努力，是为了以后有更多选择。",
-            "别怕路长，只怕心老。",
-            "每天进步一点点。",
-            "慢慢来，比较快。",
-            "心有光芒，必有远方。",
-            "知行合一，方能致远。",
-            "博观而约取，厚积而薄发。",
-            "业精于勤，荒于嬉。",
-            "锲而不舍，金石可镂。",
-    };
-
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);
@@ -63,45 +36,35 @@ public class SplashActivity extends Activity {
             iv.setImageBitmap(BitmapFactory.decodeFile(f.getAbsolutePath()));
             setContentView(iv);
         } else {
-            setContentView(textSplash());
+            setContentView(defaultSplash());
         }
         new Handler(Looper.getMainLooper()).postDelayed(this::go, 1800);
     }
 
-    private LinearLayout textSplash() {
+    private LinearLayout defaultSplash() {
         float den = getResources().getDisplayMetrics().density;
         LinearLayout root = new LinearLayout(this);
         root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackgroundColor(Color.WHITE);
         root.setGravity(Gravity.CENTER);
-        root.setBackgroundColor(Color.parseColor("#163A6B"));
-        int pad = (int) (32 * den);
-        root.setPadding(pad, pad, pad, pad);
+
+        ImageView iv = new ImageView(this);
+        iv.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        try (InputStream in = getAssets().open("splash_default.png")) {
+            iv.setImageBitmap(BitmapFactory.decodeStream(in));
+        } catch (Exception ignored) {
+        }
+        root.addView(iv, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f));
 
         TextView brand = new TextView(this);
-        brand.setText("声 记");
-        brand.setTextSize(20);
-        brand.setTextColor(Color.parseColor("#B3FFFFFF"));
+        brand.setText("声记");
+        brand.setTextSize(16);
+        brand.setTextColor(Color.parseColor("#888888"));
+        brand.setGravity(Gravity.CENTER);
+        int pad = (int) (10 * den);
+        brand.setPadding(0, pad, 0, (int) (24 * den));
         root.addView(brand);
-
-        String q = "广告位招租 [doge]";
-        TextView quote = new TextView(this);
-        quote.setText(q);
-        quote.setTextSize(28);
-        quote.setTextColor(Color.WHITE);
-        quote.setGravity(Gravity.CENTER);
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.topMargin = (int) (26 * den);
-        root.addView(quote, lp);
-
-        TextView hint = new TextView(this);
-        hint.setText("录音 · 转写 · 提问");
-        hint.setTextSize(13);
-        hint.setTextColor(Color.parseColor("#80FFFFFF"));
-        LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp2.topMargin = (int) (20 * den);
-        root.addView(hint, lp2);
         return root;
     }
 
