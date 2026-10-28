@@ -1,0 +1,30 @@
+# 依赖与模型（体积大，用 scripts/setup.ps1 获取）
+/assets/
+/libs/
+/model/
+/tmp/
+/wavtest/
+
+# 构建产物
+/build/
+*.apk
+*.aab
+*.idsig
+*.keystore
+*.jks
+
+# 素材与私人文件
+/art/
+/测试清单*
+/docs/测试清单*.pdf
+/docs/测试清单*.docx
+/download_model.py
+
+# IDE
+.idea/
+.vscode/
+local.properties
+
+# 系统
+Thumbs.db
+.DS_Store
