@@ -84,7 +84,7 @@ GitHub 的「Release」适合放编译好的 APK（单文件上限 2GB）。
 3. **Attach binaries**：把 `build\app-release.apk` 改名为 `voicemin-v0.8.2.apk` 后拖进去；
 4. 点 **Publish release**。
 
-> 建议同时把 `安装与使用说明.md`、`THIRD_PARTY_NOTICES.md` 一起放进去，或确保仓库里有。
+> 安装说明和 SHA256 直接写进 Release 描述即可，不必额外传文件。
 
 ### 附：算 SHA256（Windows）
 
@@ -119,12 +119,10 @@ Get-FileHash .\voicemin-v0.8.2.apk -Algorithm SHA256
 ```
 README.md                 # 项目介绍、构建步骤
 LICENSE                   # MIT（改一下版权人）
-THIRD_PARTY_NOTICES.md    # 第三方组件与模型许可证
 .gitignore                # 排除模型/APK/构建产物
 app/                      # 源码
 scripts/                  # setup.ps1 / build.ps1 / assemble.py
 docs/                     # 说明、许可证原文
-安装与使用说明.md
 ```
 
 > 模型（`assets/*.onnx`）、`libs/`、`build/`、`*.apk` 都不进 git；别人克隆后先跑 `scripts/setup.ps1` 再 `scripts/build.ps1`。

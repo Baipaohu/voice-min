@@ -93,4 +93,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\build.ps1 -Sdk "D:\Android\an
 ## 许可证
 
 - 本仓库代码：MIT（见 `LICENSE`）。
-- 第三方组件与模型：见 `THIRD_PARTY_NOTICES.md`（sherpa-onnx Apache-2.0、silero-vad MIT、SenseVoice FunASR Model License 等）。
+- 第三方组件与模型（保留署名；许可证原文见 `docs/FunASR_MODEL_LICENSE.txt`）：
+  - sherpa-onnx：Apache-2.0
+  - silero-vad：MIT
+  - SenseVoice（`sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17`，阿里通义实验室）：FunASR Model License v1.1，保留模型名称与出处
+  - kotlin-stdlib：Apache-2.0
